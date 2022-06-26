@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="ActionButton" parent="Theme.AppCompat">
+    <style name="ActionButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="tint">@color/secondary_700</item>
     </style>
 </resources>
