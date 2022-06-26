@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.leandrolid.soccernews.MainActivity;
 import com.leandrolid.soccernews.adapter.NewsAdapter;
 import com.leandrolid.soccernews.databinding.FragmentNewsBinding;
@@ -32,6 +33,11 @@ public class NewsFragment extends Fragment {
         binding.rvNewsList.setLayoutManager(new LinearLayoutManager(getContext()));
         LifecycleOwner recyclerViewOwner = getViewLifecycleOwner();
 
+        setupNewsList(newsViewModel, recyclerViewOwner);
+        setupNewsState(newsViewModel, recyclerViewOwner);
+    }
+
+    private void setupNewsList(NewsViewModel newsViewModel, LifecycleOwner recyclerViewOwner) {
         newsViewModel.getNews().observe(
                 recyclerViewOwner,
                 news -> binding.rvNewsList.setAdapter(new NewsAdapter(news, (updatedNews) -> {
@@ -41,6 +47,22 @@ public class NewsFragment extends Fragment {
                     assert activity != null;
                     activity.getDb().newsDao().save(updatedNews);
                 })));
+    }
+
+    private void setupNewsState(NewsViewModel newsViewModel, LifecycleOwner recyclerViewOwner) {
+        newsViewModel.getState().observe(
+                recyclerViewOwner,
+                state -> {
+                    switch (state) {
+                        case DONE:
+                            break;
+                        case DOING:
+                            break;
+                        case ERROR:
+                            Snackbar.make(binding.rvNewsList, "An error occurred.", Snackbar.LENGTH_SHORT).show();
+                            break;
+                    }
+                });
     }
 
     @Override

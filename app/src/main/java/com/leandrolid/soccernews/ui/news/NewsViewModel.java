@@ -19,7 +19,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsViewModel extends ViewModel {
 
+    private final MutableLiveData<State> state = new MutableLiveData<State>();
+
     private final MutableLiveData<List<News>> news = new MutableLiveData<>();
+
+    private void getNewsFromApi() {
+        state.setValue(State.DOING);
+        soccerNewsApi.getMatches().enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<News>> call, @NonNull Response<List<News>> response) {
+                if (response.isSuccessful()) {
+                    news.setValue(response.body());
+                    state.setValue(State.DONE);
+                } else {
+                    showErrorMessage();
+                    state.setValue(State.ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<News>> call, @NonNull Throwable t) {
+                showErrorMessage();
+                state.setValue(State.ERROR);
+            }
+        });
+    }
+
     private final NewsApi soccerNewsApi;
 
     public NewsViewModel() {
@@ -32,30 +57,19 @@ public class NewsViewModel extends ViewModel {
         getNewsFromApi();
     }
 
-    private void getNewsFromApi() {
-        soccerNewsApi.getMatches().enqueue(new Callback<List<News>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<News>> call, @NonNull Response<List<News>> response) {
-                if (response.isSuccessful()) {
-                    news.setValue(response.body());
-                } else {
-                    showErrorMessage();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<List<News>> call, @NonNull Throwable t) {
-                showErrorMessage();
-            }
-        });
+    public MutableLiveData<State> getState() {
+        return this.state;
     }
 
     private void showErrorMessage() {
-//      Snackbar.make(binding.fabSimulate, message, Snackbar.LENGTH_SHORT).show()
         Log.e("getApi", "An error occurred.");
     }
 
     public MutableLiveData<List<News>> getNews() {
         return this.news;
+    }
+
+    public enum State {
+        DOING, DONE, ERROR
     }
 }
