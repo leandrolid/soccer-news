@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.leandrolid.soccernews.MainActivity;
 import com.leandrolid.soccernews.adapter.NewsAdapter;
 import com.leandrolid.soccernews.databinding.FragmentNewsBinding;
+import com.leandrolid.soccernews.ui.MainActivity;
 
 public class NewsFragment extends Fragment {
 
@@ -24,8 +24,13 @@ public class NewsFragment extends Fragment {
         binding = FragmentNewsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        setupSwipeRefreshLayout();
         setupRecyclerView();
         return root;
+    }
+
+    private void setupSwipeRefreshLayout() {
+        binding.srlNewsList.setOnRefreshListener(this::setupRecyclerView);
     }
 
     private void setupRecyclerView() {
@@ -34,7 +39,7 @@ public class NewsFragment extends Fragment {
         LifecycleOwner recyclerViewOwner = getViewLifecycleOwner();
 
         setupNewsList(newsViewModel, recyclerViewOwner);
-        setupNewsState(newsViewModel, recyclerViewOwner);
+        onNewsStateChange(newsViewModel, recyclerViewOwner);
     }
 
     private void setupNewsList(NewsViewModel newsViewModel, LifecycleOwner recyclerViewOwner) {
@@ -49,16 +54,19 @@ public class NewsFragment extends Fragment {
                 })));
     }
 
-    private void setupNewsState(NewsViewModel newsViewModel, LifecycleOwner recyclerViewOwner) {
+    private void onNewsStateChange(NewsViewModel newsViewModel, LifecycleOwner recyclerViewOwner) {
         newsViewModel.getState().observe(
                 recyclerViewOwner,
                 state -> {
                     switch (state) {
                         case DONE:
+                            binding.srlNewsList.setRefreshing(false);
                             break;
                         case DOING:
+                            binding.srlNewsList.setRefreshing(true);
                             break;
                         case ERROR:
+                            binding.srlNewsList.setRefreshing(false);
                             Snackbar.make(binding.rvNewsList, "An error occurred.", Snackbar.LENGTH_SHORT).show();
                             break;
                     }
