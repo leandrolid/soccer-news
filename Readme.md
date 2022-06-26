@@ -47,7 +47,7 @@ Room).
 
 Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 
-- [Kotlin](https://kotlinlang.org/)
+- [Java](https://dev.java/)
 - [Glide](https://bumptech.github.io/glide/)
 - [Retrifit](https://square.github.io/retrofit/)
 - [Android Studio](https://developer.android.com/studio)
