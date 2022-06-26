@@ -46,6 +46,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             intent.setData(Uri.parse(newsItem.getLink()));
             holder.itemView.getContext().startActivity(intent);
         });
+
+        holder.binding.ibShare.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, newsItem.getTitle());
+            intent.putExtra(Intent.EXTRA_TEXT, newsItem.getLink());
+            holder.itemView.getContext().startActivity(Intent.createChooser(intent, "Choose one"));
+        });
     }
 
     @Override
