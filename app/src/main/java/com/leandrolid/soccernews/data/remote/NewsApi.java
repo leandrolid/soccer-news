@@ -1,4 +1,4 @@
-package com.leandrolid.soccernews.data;
+package com.leandrolid.soccernews.data.remote;
 
 import com.leandrolid.soccernews.domains.News;
 

@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.leandrolid.soccernews.data.NewsApi;
+import com.leandrolid.soccernews.data.remote.NewsApi;
 import com.leandrolid.soccernews.domains.News;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsViewModel extends ViewModel {
 
-    private final MutableLiveData<State> state = new MutableLiveData<State>();
+    private final MutableLiveData<State> state = new MutableLiveData<>();
 
     private final MutableLiveData<List<News>> news = new MutableLiveData<>();
 
