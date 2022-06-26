@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.leandrolid.soccernews.R;
 import com.leandrolid.soccernews.databinding.NewsItemBinding;
 import com.leandrolid.soccernews.domains.News;
 
@@ -36,28 +37,30 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Context context = holder.itemView.getContext();
+        NewsItemBinding binding = holder.binding;
         News newsItem = news.get(position);
 
-        holder.binding.tvTitle.setText(newsItem.title);
-        holder.binding.tvDescription.setText(newsItem.description);
-        Glide.with(context).load(newsItem.image).into(holder.binding.ivThumbnail);
-        Glide.with(context).load(newsItem.image).circleCrop().into(holder.binding.ivAvatar);
+        binding.tvTitle.setText(newsItem.title);
+        binding.tvDescription.setText(newsItem.description);
+        Glide.with(context).load(newsItem.image).into(binding.ivThumbnail);
+        Glide.with(context).load(newsItem.image).circleCrop().into(binding.ivAvatar);
+        Glide.with(context).load(newsItem.favorite ? R.drawable.ic_favorite_full_24 : R.drawable.ic_favorite_empty_24).into(binding.ibFavorite);
 
-        holder.binding.tbOpenLink.setOnClickListener(view -> {
+        binding.tbOpenLink.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(newsItem.link));
-            holder.itemView.getContext().startActivity(intent);
+            context.startActivity(intent);
         });
 
-        holder.binding.ibShare.setOnClickListener(view -> {
+        binding.ibShare.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_SUBJECT, newsItem.title);
             intent.putExtra(Intent.EXTRA_TEXT, newsItem.link);
-            holder.itemView.getContext().startActivity(Intent.createChooser(intent, "Choose one"));
+            context.startActivity(Intent.createChooser(intent, "Choose one"));
         });
 
-        holder.binding.ibFavorite.setOnClickListener(view -> {
+        binding.ibFavorite.setOnClickListener(view -> {
             newsItem.favorite = !newsItem.favorite;
             favoriteClickListener.onClick(newsItem);
             notifyItemChanged(position);
