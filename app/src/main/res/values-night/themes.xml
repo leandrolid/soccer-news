@@ -13,4 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ActionButton" parent="Theme.AppCompat">
+        <item name="tint">@color/secondary_200</item>
+    </style>
 </resources>
