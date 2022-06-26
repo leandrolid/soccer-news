@@ -7,7 +7,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
+import com.leandrolid.soccernews.data.local.SoccerNewsDb;
 import com.leandrolid.soccernews.databinding.ActivityMainBinding;
 
 import java.util.Objects;
@@ -15,6 +17,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private SoccerNewsDb db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,20 @@ public class MainActivity extends AppCompatActivity {
         );
 
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        setupDb();
+    }
+
+    private void setupDb() {
+        // TODO Improve db implementation to avoid "allowMainThreadQueries"
+        db = Room
+                .databaseBuilder(this, SoccerNewsDb.class, "soccer-news")
+                .allowMainThreadQueries()
+                .build();
+    }
+
+    public SoccerNewsDb getDb() {
+        return db;
     }
 
 }
