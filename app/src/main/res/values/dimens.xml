@@ -1,0 +1,21 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="spacing_1">8dp</dimen>
+    <dimen name="spacing_2">16dp</dimen>
+    <dimen name="spacing_3">24dp</dimen>
+    <dimen name="spacing_4">32dp</dimen>
+    <dimen name="spacing_5">40dp</dimen>
+    <dimen name="spacing_6">48dp</dimen>
+    <dimen name="spacing_7">56dp</dimen>
+
+    <dimen name="size_1">8dp</dimen>
+    <dimen name="size_2">16dp</dimen>
+    <dimen name="size_3">24dp</dimen>
+    <dimen name="size_4">32dp</dimen>
+    <dimen name="size_5">40dp</dimen>
+    <dimen name="size_6">48dp</dimen>
+    <dimen name="size_7">56dp</dimen>
+
+    <dimen name="rounding_1">8dp</dimen>
+    <dimen name="rounding_max">999999dp</dimen>
+</resources>

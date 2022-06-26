@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_1"
+    app:cardCornerRadius="@dimen/rounding_1">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="@dimen/size_5"
+            android:layout_height="@dimen/size_5"
+            android:layout_marginStart="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_2"
+            android:contentDescription="@string/cd_news_source_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@color/primary_500"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
+            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+            app:layout_constraintTop_toTopOf="@+id/ivAvatar"
+            tools:text="@string/app_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivThumbnail"
+            style="ima"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginVertical="@dimen/spacing_2"
+            android:contentDescription="@string/cd_thumbnail_of_the_news"
+            app:layout_constraintBottom_toTopOf="@+id/tvDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_2"
+            android:paddingHorizontal="@dimen/spacing_2"
+            app:layout_constraintBottom_toTopOf="@+id/ibShare"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/app_name" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tbOpenLink"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_2"
+            android:text="@string/text_open_link"
+            app:layout_constraintBottom_toBottomOf="@+id/ibFavorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ibFavorite" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibFavorite"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="@dimen/size_6"
+            android:layout_height="@dimen/size_6"
+            android:contentDescription="@string/cd_save_favorite_item"
+            android:padding="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ibShare"
+            app:layout_constraintEnd_toStartOf="@+id/ibShare"
+            app:layout_constraintTop_toTopOf="@+id/ibShare"
+            app:srcCompat="@drawable/ic_favorite_full_24" />
+
+        <ImageButton
+            android:id="@+id/ibShare"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="@dimen/size_6"
+            android:layout_height="@dimen/size_6"
+            android:layout_marginEnd="@dimen/spacing_2"
+            android:layout_marginBottom="@dimen/spacing_2"
+            android:contentDescription="@string/cd_share_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_share_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
