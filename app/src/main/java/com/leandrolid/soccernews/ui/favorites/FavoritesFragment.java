@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.leandrolid.soccernews.MainActivity;
 import com.leandrolid.soccernews.adapter.NewsAdapter;
 import com.leandrolid.soccernews.databinding.FragmentFavoritesBinding;
 import com.leandrolid.soccernews.domains.News;
+import com.leandrolid.soccernews.ui.MainActivity;
 
 import java.util.List;
 

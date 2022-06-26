@@ -1,4 +1,4 @@
-package com.leandrolid.soccernews;
+package com.leandrolid.soccernews.ui;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
 
+import com.leandrolid.soccernews.R;
 import com.leandrolid.soccernews.data.local.SoccerNewsDb;
 import com.leandrolid.soccernews.databinding.ActivityMainBinding;
 
