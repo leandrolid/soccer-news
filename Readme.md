@@ -22,9 +22,6 @@
 
 ## Preview
 
-<a title="Jogo da Memória" href=".github/soccer-news.apk" >Clique aqui </a> para ter acesso a um
-preview do App.
-
 <p align="center">
 <img id="soccer-news-img" src=".github/soccer-news.gif" height="480" alt="Imagem do aplicativo" />
 </p>
